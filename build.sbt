@@ -18,9 +18,13 @@ libraryDependencies += "com.fasterxml.jackson.dataformat" % "jackson-dataformat-
 
 publish / skip := false
 
-resolvers += Resolver.mavenLocal
+//resolvers += Resolver.mavenLocal
+//
+//publishTo := Some(Resolver.mavenLocal)
+//publishTo := Some(Resolver.ivyStylePatterns)
 
-publishTo := Some(Resolver.mavenLocal)
+
+publishMavenStyle := false
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
 publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
