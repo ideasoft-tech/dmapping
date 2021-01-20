@@ -10,5 +10,5 @@
 /.idea/modules/
 
 # SBT
-.bsp
+/.bsp
 
