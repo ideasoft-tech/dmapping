@@ -21,3 +21,6 @@ publish / skip := false
 resolvers += Resolver.mavenLocal
 
 publishTo := Some(Resolver.mavenLocal)
+
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
