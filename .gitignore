@@ -6,10 +6,9 @@
 /target/scala-2.13/test-classes/
 
 # IntelliJ IDEA files
-.idea/
-.idea/*.iml
-.idea/*
-.idea/modules
+/.idea/*.iml
+/.idea/modules/
 
 # SBT
 .bsp
+
