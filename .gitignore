@@ -4,5 +4,5 @@
 /target/scala-2.13/classes/
 /target/scala-2.13/test-classes/
 
-# IntelliJ IDEA
+# IntelliJ IDEA files
 .idea
