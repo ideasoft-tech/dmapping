@@ -8,6 +8,8 @@
 # IntelliJ IDEA files
 /.idea/*.iml
 /.idea/modules/
+/.idea/*
+/.idea
 
 # SBT
 /.bsp
