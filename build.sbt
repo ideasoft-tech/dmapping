@@ -13,22 +13,21 @@ libraryDependencies += "com.fasterxml.jackson.dataformat" % "jackson-dataformat-
 // publishTo := Some(MavenCache("local-maven", file("path/to/maven-repo/releases")))
 
 publishTo := {
-  val nexus = "http://nexus.ideasoft.uy:8081/"
+  val nexus = "http://nexus.i" +
+    "deasoft.uy:8081/"
   if (isSnapshot.value)
-    Some(("Sonatype Nexus Repository Manager" at nexus + "repository/snapshots").withAllowInsecureProtocol(true))
+    Some(("Ideasoft Nexus Snapshots" at nexus + "repository/snapshots").withAllowInsecureProtocol(true))
   else
-    Some(("Sonatype Nexus Repository Manager"  at nexus + "repository/releases").withAllowInsecureProtocol(true))
+    Some(("Ideasoft Nexus Releases"  at nexus + "repository/releases").withAllowInsecureProtocol(true))
 }
 publish / skip := false
 
-//resolvers += Resolver.mavenLocal
-//
-//publishTo := Some(Resolver.mavenLocal)
-//publishTo := Some(Resolver.ivyStylePatterns)
+resolvers += Resolver.mavenLocal
 
-//publishMavenStyle := false
-
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+credentials ++= Seq(
+  Credentials(Path.userHome / ".sbt" / ".credentials.releases"),
+  Credentials(Path.userHome / ".sbt" / ".credentials.snapshots")
+)
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
 publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
