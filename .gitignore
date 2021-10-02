@@ -1,9 +1,13 @@
 # Project exclude paths
+
 /project/target/*
 /project/project/*
+
 /target/
 /target/scala-2.13/classes/
 /target/scala-2.13/test-classes/
+
+/modules/*/target/**
 
 # IntelliJ IDEA files
 /.idea/*.iml

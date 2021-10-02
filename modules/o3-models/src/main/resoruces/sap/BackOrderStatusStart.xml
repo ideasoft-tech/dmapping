@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View:ColumnView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Type="http://www.sap.com/ndb/DataModelType.ecore"
+    xmlns:View="http://www.sap.com/ndb/ViewModelView.ecore" schemaVersion="2.3"
+    name="BackOrderStatusQuery" dataCategory="DEFAULT" hierarchiesSQLEnabled="false"
+    defaultNode="#//Star Join" clientDependent="false" applyPrivilegeType="ANALYTIC_PRIVILEGE"
+    translationRelevant="true">
+    <endUserTexts label="Backorder Statistics"/>
+    <origin/>
+    <executionHints/>
+    <viewNode xsi:type="View:Projection" name="Projection_1">
+        <element name="PostingDate">
+            <inlineType primitiveType="TIMESTAMP" length="27" precision="27" scale="7"/>
+        </element>
+        <element name="DueDate">
+            <inlineType primitiveType="TIMESTAMP" length="27" precision="27" scale="7"/>
+        </element>
+        <element name="DocumentDate">
+            <inlineType primitiveType="TIMESTAMP" length="27" precision="27" scale="7"/>
+        </element>
+        <element name="DocumentTypeCode">
+            <inlineType primitiveType="NVARCHAR" length="20" precision="20" scale="0"/>
+        </element>
+        <element name="LineSalesEmployeeOrBuyerNumber">
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <element name="BusinessPartnerCode">
+            <inlineType primitiveType="NVARCHAR" length="15" precision="15" scale="0"/>
+        </element>
+        <element name="BusinessPartnerChannelPartner">
+            <endUserTexts label="BP Channel Partner"/>
+            <inlineType primitiveType="NVARCHAR" length="100" precision="100" scale="0"/>
+        </element>
+        <element name="BranchCode">
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <element name="LineDocumentOwner">
+            <endUserTexts label="Line Document Owner"/>
+            <inlineType primitiveType="NVARCHAR" length="160" precision="160" scale="0"/>
+        </element>
+        <element name="LineShippingType">
+            <endUserTexts label="Line Shipping Type"/>
+            <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+        </element>
+        <element name="LineItemCode">
+            <inlineType primitiveType="NVARCHAR" length="50" precision="50" scale="0"/>
+        </element>
+        <element name="LineWarehouseCode">
+            <inlineType primitiveType="NVARCHAR" length="8" precision="8" scale="0"/>
+        </element>
+        <element name="OrderedQuantityInInventoryUoM">
+            <endUserTexts label="Ordered Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="DeliveredQuantityInInvUoM">
+            <endUserTexts label="Delivered Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="OpenQuantityInInventoryUoM">
+            <endUserTexts label="Open Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="DocumentNumber">
+            <endUserTexts label="Document Number"/>
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <element name="DocumentRowNumber">
+            <endUserTexts label="Document Row Number"/>
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <input> #sap.sboc222db2prd.ar.case::BackOrderStatusFact <mapping
+                xsi:type="Type:ElementMapping" targetName="PostingDate" sourceName="PostingDate"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DueDate" sourceName="DueDate"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentDate"
+                sourceName="DocumentDate"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentTypeCode"
+                sourceName="DocumentTypeCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineSalesEmployeeOrBuyerNumber"
+                sourceName="LineSalesEmployeeOrBuyerNumber"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="BusinessPartnerCode"
+                sourceName="BusinessPartnerCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="BusinessPartnerChannelPartner"
+                sourceName="BusinessPartnerChannelPartner"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="BranchCode" sourceName="BranchCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineDocumentOwner"
+                sourceName="LineDocumentOwner"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineShippingType"
+                sourceName="LineShippingType"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineItemCode"
+                sourceName="LineItemCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineWarehouseCode"
+                sourceName="LineWarehouseCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="OrderedQuantityInInventoryUoM"
+                sourceName="OrderedQuantityInInventoryUoM"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DeliveredQuantityInInvUoM"
+                sourceName="DeliveredQuantityInInvUoM"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="OpenQuantityInInventoryUoM"
+                sourceName="OpenQuantityInInventoryUoM"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentNumber"
+                sourceName="DocumentNumber"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentRowNumber"
+                sourceName="DocumentRowNumber"/>
+        </input>
+        <layout xCoordinate="22" yCoordinate="357" width="-1" height="-1" expanded="true"/>
+    </viewNode>
+    <viewNode xsi:type="View:JoinNode" name="Star Join">
+        <element name="DocumentNumber" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+            <endUserTexts label="Document Number"/>
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <element name="DocumentRowNumber" aggregationBehavior="NONE"
+            drillDownEnablement="DRILL_DOWN">
+            <endUserTexts label="Document Row Number"/>
+            <inlineType primitiveType="INTEGER" length="10" precision="10" scale="0"/>
+        </element>
+        <element name="BusinessPartnerChannelPartner" aggregationBehavior="NONE"
+            drillDownEnablement="DRILL_DOWN">
+            <endUserTexts label="BP Channel Partner"/>
+            <inlineType primitiveType="NVARCHAR" length="100" precision="100" scale="0"/>
+        </element>
+        <element name="LineDocumentOwner" aggregationBehavior="NONE"
+            drillDownEnablement="DRILL_DOWN">
+            <endUserTexts label="Line Document Owner"/>
+            <inlineType primitiveType="NVARCHAR" length="160" precision="160" scale="0"/>
+        </element>
+        <element name="LineShippingType" aggregationBehavior="NONE" drillDownEnablement="DRILL_DOWN">
+            <endUserTexts label="Line Shipping Type"/>
+            <inlineType primitiveType="NVARCHAR" length="40" precision="40" scale="0"/>
+        </element>
+        <element name="OrderedQuantityInInventoryUoM" aggregationBehavior="SUM"
+            engineAggregation="SUM">
+            <endUserTexts label="Ordered Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="DeliveredQuantityInInvUoM" aggregationBehavior="SUM" engineAggregation="SUM">
+            <endUserTexts label="Delivered Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="OpenQuantityInInventoryUoM" aggregationBehavior="SUM" engineAggregation="SUM">
+            <endUserTexts label="Open Quantity (In Inventory UoM)"/>
+            <inlineType primitiveType="DECIMAL" length="21" precision="21" scale="6"/>
+        </element>
+        <element name="BackOrderPercentage" hidden="false" aggregationBehavior="FORMULA"
+            engineAggregation="FORMULA">
+            <endUserTexts label="Backorder Percentage %"/>
+            <inlineType name="DECIMAL" primitiveType="DECIMAL" length="21" scale="6"/>
+            <calculationDefinition language="COLUMN_ENGINE">
+                <formula>if(&quot;OrderedQuantityInInventoryUoM&quot;=0,0,decfloat(&quot;OpenQuantityInInventoryUoM&quot;)/decfloat(&quot;OrderedQuantityInInventoryUoM&quot;))*100</formula>
+            </calculationDefinition>
+        </element>
+        <input>
+            <viewNode xsi:type="View:Projection">#//Projection_1</viewNode>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentNumber"
+                sourceName="DocumentNumber"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DocumentRowNumber"
+                sourceName="DocumentRowNumber"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="BusinessPartnerChannelPartner"
+                sourceName="BusinessPartnerChannelPartner"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineDocumentOwner"
+                sourceName="LineDocumentOwner"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="LineShippingType"
+                sourceName="LineShippingType"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="OrderedQuantityInInventoryUoM"
+                sourceName="OrderedQuantityInInventoryUoM"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="DeliveredQuantityInInvUoM"
+                sourceName="DeliveredQuantityInInvUoM"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="OpenQuantityInInventoryUoM"
+                sourceName="OpenQuantityInInventoryUoM"/>
+            <layout xCoordinate="895" yCoordinate="1058"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::PostingDate</entity>
+            <mapping xsi:type="View:InputMapping" targetName="PostingDate" sourceName="PostingDate"
+                sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="876" yCoordinate="16"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::DueDate</entity>
+            <mapping xsi:type="View:InputMapping" targetName="DueDate" sourceName="DueDate"
+                sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="16" yCoordinate="80"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::DocumentDate</entity>
+            <mapping xsi:type="View:InputMapping" targetName="DocumentDate"
+                sourceName="DocumentDate" sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="876" yCoordinate="177"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::DocumentType</entity>
+            <mapping xsi:type="View:InputMapping" targetName="DocumentTypeCode"
+                sourceName="DocumentTypeCode" sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="16" yCoordinate="241"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::BusinessPartner</entity>
+            <mapping xsi:type="View:InputMapping" targetName="BusinessPartnerCode"
+                sourceName="BusinessPartnerCode" sourceInput="#//Star Join/Projection_1"/>
+            <excludedElementName>BusinessPartnerGroupCode</excludedElementName>
+            <excludedElementName>PaymentMethodCode</excludedElementName>
+            <excludedElementName>BusinessPartnerCurrency</excludedElementName>
+            <excludedElementName>BillToOrPayToStreet</excludedElementName>
+            <excludedElementName>FederalTaxID</excludedElementName>
+            <excludedElementName>MailCountry</excludedElementName>
+            <excludedElementName>BillToOrPayToCity</excludedElementName>
+            <excludedElementName>BillToOrPayToCountry</excludedElementName>
+            <excludedElementName>AdditionalID</excludedElementName>
+            <excludedElementName>WithholdingTaxCode</excludedElementName>
+            <excludedElementName>UnifiedFederalTaxID</excludedElementName>
+            <excludedElementName>ResidenceNumberType</excludedElementName>
+            <layout xCoordinate="884" yCoordinate="483"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::Branch</entity>
+            <mapping xsi:type="View:InputMapping" targetName="BranchCode" sourceName="BranchCode"
+                sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="16" yCoordinate="563"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::Item</entity>
+            <mapping xsi:type="View:InputMapping" targetName="ItemCode" sourceName="LineItemCode"
+                sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="16" yCoordinate="724"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::Warehouse</entity>
+            <mapping xsi:type="View:InputMapping" targetName="WarehouseCode"
+                sourceName="LineWarehouseCode" sourceInput="#//Star Join/Projection_1"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="Warehouse_BranchCode"
+                sourceName="BranchCode"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="Warehouse_BranchName"
+                sourceName="BranchName"/>
+            <mapping xsi:type="Type:ElementMapping" targetName="Warehouse_FederalTaxID"
+                sourceName="FederalTaxID"/>
+            <excludedElementName>FederalTaxID</excludedElementName>
+            <layout xCoordinate="411" yCoordinate="1138"/>
+        </input>
+        <input selectAll="true">
+            <entity>#//sap.sboc222db2prd.adm::SalesEmployeeOrBuyer</entity>
+            <mapping xsi:type="View:InputMapping" targetName="SalesEmployeeOrBuyerNumber"
+                sourceName="LineSalesEmployeeOrBuyerNumber" sourceInput="#//Star Join/Projection_1"/>
+            <layout xCoordinate="16" yCoordinate="370"/>
+        </input>
+        <layout xCoordinate="22" yCoordinate="87" width="0" height="0" expanded="true"/>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::PostingDate" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>PostingDate</leftElementName>
+            <rightElementName>PostingDate</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::DueDate" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>DueDate</leftElementName>
+            <rightElementName>DueDate</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::DocumentDate" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>DocumentDate</leftElementName>
+            <rightElementName>DocumentDate</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::DocumentType" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>DocumentTypeCode</leftElementName>
+            <rightElementName>DocumentTypeCode</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::BusinessPartner" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>BusinessPartnerCode</leftElementName>
+            <rightElementName>BusinessPartnerCode</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::Branch" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>BranchCode</leftElementName>
+            <rightElementName>BranchCode</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::Item" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>LineItemCode</leftElementName>
+            <rightElementName>ItemCode</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::Warehouse" joinType="leftOuter"
+            cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>LineWarehouseCode</leftElementName>
+            <rightElementName>WarehouseCode</rightElementName>
+        </join>
+        <join leftInput="#//Star Join/Projection_1"
+            rightInput="#//Star Join/sap.sboc222db2prd.adm::SalesEmployeeOrBuyer"
+            joinType="leftOuter" cardinality="CN_1" dimensionJoin="true">
+            <leftElementName>LineSalesEmployeeOrBuyerNumber</leftElementName>
+            <rightElementName>SalesEmployeeOrBuyerNumber</rightElementName>
+        </join>
+    </viewNode>
+    <viewLayout relativeWidthScenario="27"/>
+</View:ColumnView>

@@ -1,20 +1,46 @@
+//import CommonDef.BuildEnv
+//import com.typesafe.sbt.packager.docker.Cmd
+import sbt.Keys.libraryDependencies
+import sbt.io.Path.allSubpaths
+
 
 ThisBuild / organization := "uy.ideasoft"
 ThisBuild / version      := "0.1-SNAPSHOT"
+ThisBuild / scalaVersion := Dependencies.scalaVersion
 
-scalaVersion := "2.13.4"
 
-val jacksonVersion = "2.11.2"
 
-libraryDependencies +="com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion
-libraryDependencies += "com.fasterxml.jackson.dataformat" % "jackson-dataformat-xml" % jacksonVersion
+/**
+ * Common Settings
+ */
+lazy val commonSettings = Seq(
+  libraryDependencies ++= Seq(
+    Dependencies.jacksonModule,
+    Dependencies.jacksonData,
+    Dependencies.scalaTest
+  )
+)
+
+lazy val core = project.in(file("./modules/core"))
+  .dependsOn()
+  .aggregate()
+  .settings(
+    commonSettings
+  )
+
+lazy val o3Models = project.in(file("./modules/o3-models"))
+  .dependsOn(core)
+  .aggregate(core)
+  .settings(
+    commonSettings,
+    libraryDependencies += Dependencies.o3Metadata
+  )
 
 
 // publishTo := Some(MavenCache("local-maven", file("path/to/maven-repo/releases")))
 
 publishTo := {
-  val nexus = "http://nexus.i" +
-    "deasoft.uy:8081/"
+  val nexus = "http://nexus.ideasoft.uy:8081/"
   if (isSnapshot.value)
     Some(("Ideasoft Nexus Snapshots" at nexus + "repository/snapshots").withAllowInsecureProtocol(true))
   else

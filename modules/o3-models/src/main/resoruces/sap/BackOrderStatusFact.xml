@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3"
+    id="BackOrderStatusQuery" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true"
+    defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false"
+    translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED"
+    dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED">
+    <origin/>
+    <descriptions defaultDescription="Backorder Statistics"/>
+    <localVariables/>
+    <variableMappings/>
+    <informationModelLayout relativeWidthScenario="27"/>
+    <dataSources>
+        <DataSource id="BackOrderStatusFact" type="CALCULATION_VIEW">
+            <viewAttributes allViewAttributes="true"/>
+            /sap.sboc222db2prd.ar.case/calculationviews/BackOrderStatusFact </DataSource>
+    </dataSources>
+    <calculationViews>
+        <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+            <descriptions/>
+            <viewAttributes>
+                <viewAttribute id="PostingDate"/>
+                <viewAttribute id="DueDate"/>
+                <viewAttribute id="DocumentDate"/>
+                <viewAttribute id="DocumentTypeCode"/>
+                <viewAttribute id="LineSalesEmployeeOrBuyerNumber"/>
+                <viewAttribute id="BusinessPartnerCode"/>
+                <viewAttribute id="BusinessPartnerChannelPartner"/>
+                <viewAttribute id="BranchCode"/>
+                <viewAttribute id="LineDocumentOwner"/>
+                <viewAttribute id="LineShippingType"/>
+                <viewAttribute id="LineItemCode"/>
+                <viewAttribute id="LineWarehouseCode"/>
+                <viewAttribute id="OrderedQuantityInInventoryUoM"/>
+                <viewAttribute id="DeliveredQuantityInInvUoM"/>
+                <viewAttribute id="OpenQuantityInInventoryUoM"/>
+                <viewAttribute id="DocumentNumber"/>
+                <viewAttribute id="DocumentRowNumber"/>
+            </viewAttributes>
+            <calculatedViewAttributes/>
+            <input node="#BackOrderStatusFact">
+                <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate"
+                    source="PostingDate"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DueDate" source="DueDate"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate"
+                    source="DocumentDate"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DocumentTypeCode"
+                    source="DocumentTypeCode"/>
+                <mapping xsi:type="Calculation:AttributeMapping"
+                    target="LineSalesEmployeeOrBuyerNumber" source="LineSalesEmployeeOrBuyerNumber"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="BusinessPartnerCode"
+                    source="BusinessPartnerCode"/>
+                <mapping xsi:type="Calculation:AttributeMapping"
+                    target="BusinessPartnerChannelPartner" source="BusinessPartnerChannelPartner"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="BranchCode"
+                    source="BranchCode"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="LineDocumentOwner"
+                    source="LineDocumentOwner"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="LineShippingType"
+                    source="LineShippingType"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="LineItemCode"
+                    source="LineItemCode"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="LineWarehouseCode"
+                    source="LineWarehouseCode"/>
+                <mapping xsi:type="Calculation:AttributeMapping"
+                    target="OrderedQuantityInInventoryUoM" source="OrderedQuantityInInventoryUoM"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DeliveredQuantityInInvUoM"
+                    source="DeliveredQuantityInInvUoM"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="OpenQuantityInInventoryUoM"
+                    source="OpenQuantityInInventoryUoM"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DocumentNumber"
+                    source="DocumentNumber"/>
+                <mapping xsi:type="Calculation:AttributeMapping" target="DocumentRowNumber"
+                    source="DocumentRowNumber"/>
+            </input>
+        </calculationView>
+    </calculationViews>
+    <logicalModel id="Projection_1">
+        <descriptions/>
+        <attributes>
+            <attribute id="DocumentNumber" order="1" attributeHierarchyActive="false"
+                displayAttribute="false">
+                <descriptions defaultDescription="Document Number"/>
+                <keyMapping columnObjectName="Projection_1" columnName="DocumentNumber"/>
+            </attribute>
+            <attribute id="DocumentRowNumber" order="2" attributeHierarchyActive="false"
+                displayAttribute="false">
+                <descriptions defaultDescription="Document Row Number"/>
+                <keyMapping columnObjectName="Projection_1" columnName="DocumentRowNumber"/>
+            </attribute>
+            <attribute id="BusinessPartnerChannelPartner" order="3" attributeHierarchyActive="false"
+                displayAttribute="false">
+                <descriptions defaultDescription="BP Channel Partner"/>
+                <keyMapping columnObjectName="Projection_1"
+                    columnName="BusinessPartnerChannelPartner"/>
+            </attribute>
+            <attribute id="LineDocumentOwner" order="4" attributeHierarchyActive="false"
+                displayAttribute="false">
+                <descriptions defaultDescription="Line Document Owner"/>
+                <keyMapping columnObjectName="Projection_1" columnName="LineDocumentOwner"/>
+            </attribute>
+            <attribute id="LineShippingType" order="5" attributeHierarchyActive="false"
+                displayAttribute="false">
+                <descriptions defaultDescription="Line Shipping Type"/>
+                <keyMapping columnObjectName="Projection_1" columnName="LineShippingType"/>
+            </attribute>
+            <attribute id="PostingDate$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="PostingDate"/>
+            </attribute>
+            <attribute id="DueDate$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="DueDate"/>
+            </attribute>
+            <attribute id="DocumentDate$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="DocumentDate"/>
+            </attribute>
+            <attribute id="DocumentTypeCode$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="DocumentTypeCode"/>
+            </attribute>
+            <attribute id="BusinessPartnerCode$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="BusinessPartnerCode"/>
+            </attribute>
+            <attribute id="BranchCode$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="BranchCode"/>
+            </attribute>
+            <attribute id="LineItemCode$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="LineItemCode"/>
+            </attribute>
+            <attribute id="LineWarehouseCode$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1" columnName="LineWarehouseCode"/>
+            </attribute>
+            <attribute id="LineSalesEmployeeOrBuyerNumber$local">
+                <descriptions/>
+                <keyMapping columnObjectName="Projection_1"
+                    columnName="LineSalesEmployeeOrBuyerNumber"/>
+            </attribute>
+        </attributes>
+        <calculatedAttributes/>
+        <privateDataFoundation>
+            <tableProxies/>
+            <joins/>
+            <layout>
+                <shapes/>
+            </layout>
+        </privateDataFoundation>
+        <baseMeasures>
+            <measure id="OrderedQuantityInInventoryUoM" order="6" aggregationType="sum"
+                engineAggregation="sum" measureType="simple">
+                <descriptions defaultDescription="Ordered Quantity (In Inventory UoM)"/>
+                <measureMapping columnObjectName="Projection_1"
+                    columnName="OrderedQuantityInInventoryUoM"/>
+            </measure>
+            <measure id="DeliveredQuantityInInvUoM" order="7" aggregationType="sum"
+                engineAggregation="sum" measureType="simple">
+                <descriptions defaultDescription="Delivered Quantity (In Inventory UoM)"/>
+                <measureMapping columnObjectName="Projection_1"
+                    columnName="DeliveredQuantityInInvUoM"/>
+            </measure>
+            <measure id="OpenQuantityInInventoryUoM" order="8" aggregationType="sum"
+                engineAggregation="sum" measureType="simple">
+                <descriptions defaultDescription="Open Quantity (In Inventory UoM)"/>
+                <measureMapping columnObjectName="Projection_1"
+                    columnName="OpenQuantityInInventoryUoM"/>
+            </measure>
+        </baseMeasures>
+        <calculatedMeasures>
+            <measure id="BackOrderPercentage" hidden="false" order="9" aggregationType="sum"
+                engineAggregation="sum" measureType="simple" datatype="DECIMAL"
+                expressionLanguage="COLUMN_ENGINE" length="21" scale="6">
+                <descriptions defaultDescription="Backorder Percentage %"/>
+                <formula>if(&quot;OrderedQuantityInInventoryUoM&quot;=0,0,decfloat(&quot;OpenQuantityInInventoryUoM&quot;)/decfloat(&quot;OrderedQuantityInInventoryUoM&quot;))*100</formula>
+            </measure>
+        </calculatedMeasures>
+        <restrictedMeasures/>
+        <localDimensions/>
+        <sharedDimensions>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/PostingDate">
+                <attributes>
+                    <attributeRef>#PostingDate$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>PostingDate</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/DueDate">
+                <attributes>
+                    <attributeRef>#DueDate$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>DueDate</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/DocumentDate">
+                <attributes>
+                    <attributeRef>#DocumentDate$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>DocumentDate</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/DocumentType">
+                <attributes>
+                    <attributeRef>#DocumentTypeCode$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>DocumentTypeCode</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin
+                associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/BusinessPartner">
+                <attributes>
+                    <attributeRef>#BusinessPartnerCode$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>BusinessPartnerCode</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures>
+                    <attributeReference attributeName="BusinessPartnerGroupCode" hidden="true"/>
+                    <attributeReference attributeName="PaymentMethodCode" hidden="true"/>
+                    <attributeReference attributeName="BusinessPartnerCurrency" hidden="true"/>
+                    <attributeReference attributeName="BillToOrPayToStreet" hidden="true"/>
+                    <attributeReference attributeName="FederalTaxID" hidden="true"/>
+                    <attributeReference attributeName="MailCountry" hidden="true"/>
+                    <attributeReference attributeName="BillToOrPayToCity" hidden="true"/>
+                    <attributeReference attributeName="BillToOrPayToCountry" hidden="true"/>
+                    <attributeReference attributeName="AdditionalID" hidden="true"/>
+                    <attributeReference attributeName="WithholdingTaxCode" hidden="true"/>
+                    <attributeReference attributeName="UnifiedFederalTaxID" hidden="true"/>
+                    <attributeReference attributeName="ResidenceNumberType" hidden="true"/>
+                </associatedAttributeFeatures>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/Branch">
+                <attributes>
+                    <attributeRef>#BranchCode$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>BranchCode</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/Item">
+                <attributes>
+                    <attributeRef>#LineItemCode$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>ItemCode</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+            <logicalJoin associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/Warehouse">
+                <attributes>
+                    <attributeRef>#LineWarehouseCode$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>WarehouseCode</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures>
+                    <attributeReference alias="Warehouse_BranchCode" attributeName="BranchCode"/>
+                    <attributeReference alias="Warehouse_BranchName" attributeName="BranchName"/>
+                    <attributeReference alias="Warehouse_FederalTaxID" attributeName="FederalTaxID"
+                        hidden="true"/>
+                </associatedAttributeFeatures>
+            </logicalJoin>
+            <logicalJoin
+                associatedObjectUri="/sap.sboc222db2prd.adm/calculationviews/SalesEmployeeOrBuyer">
+                <attributes>
+                    <attributeRef>#LineSalesEmployeeOrBuyerNumber$local</attributeRef>
+                </attributes>
+                <associatedAttributeNames>
+                    <attributeName>SalesEmployeeOrBuyerNumber</attributeName>
+                </associatedAttributeNames>
+                <properties cardinality="CN_1" joinOperator="Equal" joinType="leftOuter"/>
+                <associatedAttributeFeatures/>
+            </logicalJoin>
+        </sharedDimensions>
+    </logicalModel>
+    <layout>
+        <shapes>
+            <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+                <upperLeftCorner x="22" y="87"/>
+                <rectangleSize height="0" width="0"/>
+            </shape>
+            <shape expanded="true" modelObjectName="Projection_1"
+                modelObjectNameSpace="CalculationView">
+                <upperLeftCorner x="22" y="357"/>
+                <rectangleSize height="-1" width="-1"/>
+            </shape>
+            <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput"
+                modelObjectType="repository">
+                <upperLeftCorner x="895" y="1058"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/PostingDate"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="876" y="16"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/DueDate"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="16" y="80"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/DocumentDate"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="876" y="177"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/DocumentType"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="16" y="241"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/BusinessPartner"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="884" y="483"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/Branch"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="16" y="563"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/Item"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="16" y="724"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/Warehouse"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="411" y="1138"/>
+            </shape>
+            <shape modelObjectName="/sap.sboc222db2prd.adm/calculationviews/SalesEmployeeOrBuyer"
+                modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+                <upperLeftCorner x="16" y="370"/>
+            </shape>
+        </shapes>
+    </layout>
+</Calculation:scenario>
