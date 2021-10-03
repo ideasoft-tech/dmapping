@@ -8,16 +8,18 @@ ThisBuild / organization := "uy.ideasoft"
 ThisBuild / version      := "0.1-SNAPSHOT"
 ThisBuild / scalaVersion := Dependencies.scalaVersion
 
-
+unmanagedBase := baseDirectory.value / "lib"
 
 /**
  * Common Settings
  */
 lazy val commonSettings = Seq(
+  resolvers += ("Ideasoft Nexus Releases" at nexus + "repository/public").withAllowInsecureProtocol(true),
+  resolvers += Resolver.mavenLocal,
   libraryDependencies ++= Seq(
     Dependencies.jacksonModule,
     Dependencies.jacksonData,
-    Dependencies.scalaTest
+    Dependencies.scalaTest,
   )
 )
 
@@ -33,14 +35,17 @@ lazy val o3Models = project.in(file("./modules/o3-models"))
   .aggregate(core)
   .settings(
     commonSettings,
-    libraryDependencies += Dependencies.o3Metadata
+    libraryDependencies ++= Seq(
+//      Dependencies.jLibUtil,
+      Dependencies.velocity,
+      Dependencies.commonsLogging,
+      Dependencies.commonsCodec
+     )
   )
 
-
 // publishTo := Some(MavenCache("local-maven", file("path/to/maven-repo/releases")))
-
+val nexus = "http://nexus.ideasoft.uy:8081/"
 publishTo := {
-  val nexus = "http://nexus.ideasoft.uy:8081/"
   if (isSnapshot.value)
     Some(("Ideasoft Nexus Snapshots" at nexus + "repository/snapshots").withAllowInsecureProtocol(true))
   else
@@ -48,11 +53,8 @@ publishTo := {
 }
 publish / skip := false
 
-resolvers += Resolver.mavenLocal
-
 credentials ++= Seq(
-  Credentials(Path.userHome / ".sbt" / ".credentials.releases"),
-  Credentials(Path.userHome / ".sbt" / ".credentials.snapshots")
+  Credentials(Path.userHome / ".sbt" / ".is-credentials"),
 )
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
