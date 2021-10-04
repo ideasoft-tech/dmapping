@@ -11,7 +11,7 @@ import com.ideasoft.edf.data.api.SchemaConnectionDescriptor;
 import com.ideasoft.edf.data.spec.Metadata;
 import org.w3c.dom.events.EventTarget;
 
-public interface SessionContext extends EventTarget {
+public interface SessionContext {
 
   public Metadata getMetadata();
 

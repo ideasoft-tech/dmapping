@@ -1,24 +1,26 @@
-package com.ideasoft.o3.metadata.spc
+package uy.ideasoft.o3tng.metadata.bi
 
 case class MeasureSpc(
   name: String,
   description: Option[String] = None,
-  measureSrc: MeasureSrcSpc,
   aggregation: String,
+  measureSrc: MeasureSrcSpc,
 )
 
 
 object MeasureSpc {
-  val SUM_AGGREGATION_FUNCTION = "SUM"
-  val MAX_AGGREGATION_FUNCTION = "MAX"
-  val MIN_AGGREGATION_FUNCTION = "MIN"
-  val AVG_AGGREGATION_FUNCTION = "AVG"
-  val COUNT_AGGREGATION_FUNCTION = "COUNT"
+  val SUM_AGGREGATION = "SUM"
+  val MAX_AGGREGATION = "MAX"
+  val MIN_AGGREGATION = "MIN"
+  val AVG_AGGREGATION = "AVG"
+  val COUNT_AGGREGATION = "COUNT"
 }
 
 sealed trait MeasureSrcSpc;
 
-case class AttrMeasureSrcSpc(measureAttr: String) extends MeasureSrcSpc
+case class BasicMeasureSrcSpc(
+  measureAttr: String
+) extends MeasureSrcSpc
 
 case class DerivedMeasureSrcSpc(
   calculate: String,
@@ -45,7 +47,7 @@ case class TwoMeasureDerivationSpc(
 case class DateDerivationSpc(
   measure: String,
   dateDimension: String,
-  accumulationLevel: String,
+  accumulationLevel: Option[String] = None,
   smooth: Option[SmoothSerie] = None
 ) extends DerivationSpc
 

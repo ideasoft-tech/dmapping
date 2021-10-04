@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conceptualModel xmlns="http://www.ideasoft.com.uy/o3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ideasoft.com.uy/o3 F:\Projects\o3\common\src\main\resources\schemas\o3model.xsd">
+	<starModel name="Precios">
+		<starDimensions>
+			<starDimension name="Date">
+				<dateDimensionDefinition>
+					<hierarchy>
+						<level name="Year" granularity="LEVEL_YEAR"/>
+						<level name="Month" granularity="LEVEL_MONTH"/>
+					</hierarchy>
+				</dateDimensionDefinition>
+			</starDimension>
+			<starDimension name="Scenario">
+				<tableDimensionDefinition tableName="simScene" edfSchemaName="simulation">
+					<hierarchy>
+						<level name="scene" keyAttribute="scene_id" labelAttribute="label" descriptionAttribute="description"/>
+					</hierarchy>
+				</tableDimensionDefinition>
+			</starDimension>
+			<starDimension name="Productos">
+				<tableDimensionDefinition tableName="products" edfSchemaName="ancel2">
+					<hierarchy>
+						<!-- helpSchemaName and helpTableName are purelly optional -->
+						<level name="Producto" keyAttribute="code" helpSchemaName="ancel2" helpTableName="products" labelAttribute="name"/>
+					</hierarchy>
+				</tableDimensionDefinition>
+			</starDimension>
+		</starDimensions>
+		<factTables>
+			<factTable name="Precios" tableName="prices" edfSchemaName="ancel2-simulation">
+				<starDimensionReference dimension="Date">
+					<factAttribute>simulation_time</factAttribute>
+				</starDimensionReference>
+				<starDimensionReference dimension="Scenario">
+					<factAttribute>scene_id</factAttribute>
+				</starDimensionReference>
+				<starDimensionReference dimension="Productos">
+					<factAttribute>product_code</factAttribute>
+				</starDimensionReference>
+				<measure name="Precio" aggregationFunction="SUM">
+					<basic measureAttribute="value"/>
+				</measure>
+				<measure name="Precio Acumulado" aggregationFunction="SUM">
+					<derived calculate="after">
+						<dateAcumulation measure="Precio" dateDimension="Date"/>
+					</derived>
+				</measure>
+			</factTable>
+		</factTables>
+		<cubes>
+			<cube name="Precios">
+				<factTableReference>Precios</factTableReference>
+			</cube>
+		</cubes>
+	</starModel>
+</conceptualModel>

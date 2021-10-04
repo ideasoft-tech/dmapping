@@ -1,4 +1,4 @@
-package com.ideasoft.o3.metadata.spc
+package uy.ideasoft.o3tng.metadata.bi
 
 sealed trait DimLevelSpc {
   def name: String
@@ -6,7 +6,7 @@ sealed trait DimLevelSpc {
   def isUnique: Boolean
 }
 
-case class AttrDimLevelSpc(
+case class AttrLevelSpc(
   name: String,
   description: Option[String] = None,
   isUnique: Boolean = false,
@@ -19,14 +19,14 @@ case class AttrDimLevelSpc(
 ) extends DimLevelSpc
 
 
-case class DateDimLevelSpc(
+case class DateLevelSpc(
   name: String,
   description: Option[String] = None,
   isUnique: Boolean = false,
   granularity: String
 ) extends DimLevelSpc
 
-object DateDimLevelSpc {
+object DateLevelSpc {
   /**
    * Those are the possible granularities for the date level
    */

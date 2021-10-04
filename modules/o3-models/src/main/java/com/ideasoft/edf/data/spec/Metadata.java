@@ -2,10 +2,10 @@ package com.ideasoft.edf.data.spec;
 
 import com.ideasoft.edf.data.metadata.impl.Table;
 
-public class Metadata {
+public interface Metadata {
 
-  public Table getTable(String sch, String name) { return null; }
+  Table getTable(String sch, String name);
 
-  public DataField getFieldbyFieldName(String var1) { return null; }
+  DataField getFieldbyFieldName(String var1);
 
 }

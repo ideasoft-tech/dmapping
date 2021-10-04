@@ -1,17 +1,17 @@
-package com.ideasoft.o3.metadata.spc
+package uy.ideasoft.o3tng.metadata.bi
 
 case class StarSchemaSpc(
   name: String,
   description: Option[String] = None,
   dimensions: Seq[StarDimensionSpc],
-  factsTables: Seq[StarFactsSpc],
+  facts: Seq[StarFactsSpc],
   cubes: Seq[CubeSpc]
 )
 
 case class StarDimensionSpc(
   name: String,
-  description: Option[String],
-  definition: DimensionSpc
+  description: Option[String] = None,
+  dimSpc: DimensionSpc
 )
 
 case class StarFactsSpc(
@@ -19,13 +19,24 @@ case class StarFactsSpc(
   description: Option[String] = None,
   table: String,
   schema: String,
-  joinDimension: StartJoin,
+  joins: Seq[StarJoinSpc],
   measures: Seq[MeasureSpc]
 )
 
-case class StartJoin(
-  dimension: String
-)
+class AttrSpc(name: String)
+
+sealed trait StarJoinSpc
+
+case class ForeignKeyLeftJoinSpc(
+  dimension: String,
+  foreignKey: String
+) extends StarJoinSpc
+
+
+case class AttrLeftJoinSpc(
+  dimension: String,
+  attributes: Seq[String]
+) extends StarJoinSpc
 
 case class CubeSpc(
   name: String,
