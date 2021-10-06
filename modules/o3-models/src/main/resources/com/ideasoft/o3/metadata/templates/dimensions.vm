@@ -1,0 +1,36 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+#foreach($dimension in $o3Model.dimensions)
+#DIMENSION $dimension.name
+#if ($dimension.class.forName("com.ideasoft.o3.metadata.util.mdl.api.DateDimensionSpec").isAssignableFrom($dimension.class))
+#parse("com/ideasoft/o3/metadata/templates/dateDimension.vm")
+#else
+#parse("com/ideasoft/o3/metadata/templates/elementsDimension.vm")
+#end
+#end
+
+#foreach($dimension in $o3Model.dimensions)
+#if ($dimension.class.forName("com.ideasoft.o3.metadata.util.mdl.api.DateDimensionSpec").isAssignableFrom($dimension.class))
+#if ($dimension.measuresMode.equals("APPEND_MODE"))
+	OBJECT ideasoft.olap.syntax.VirtualExpressionSTB
+		ATTR
+		STBVersion=1.0
+		name='${dimension.dateField}'
+		type='TYPE_DATE'
+		address='0'
+		tableKey='false'
+		tableField='false'
+		stringExpression=''
+		END
+		
+		OBJECT ideasoft.olap.syntax.StoreExpressionSTB null
+			ATTR
+			STBVersion=1.0
+			indepExpr='today()'
+			visibleExpr='Today()'
+			language='en'
+			END
+		END
+	END
+#end
+#end
+#end

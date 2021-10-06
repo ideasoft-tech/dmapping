@@ -1,0 +1,7 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+
+plugin.${pluginIndex}.name=${queryModel.name}
+plugin.${pluginIndex}.dsc=$!{queryModel.description}
+plugin.${pluginIndex}.browser.class=com.ideasoft.o3.dt.plugin.DTBrowserPlugin
+plugin.${pluginIndex}.server.class=com.ideasoft.o3.dt.plugin.DTServerPlugin
+plugin.${pluginIndex}.args=taskName=${queryModel.name}Task

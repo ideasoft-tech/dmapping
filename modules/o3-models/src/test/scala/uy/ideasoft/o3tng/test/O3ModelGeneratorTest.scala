@@ -13,8 +13,9 @@ class O3ModelGeneratorTest extends AnyFreeSpec with should.Matchers {
       "and do nothing" in {
         val star = TestStarSpc.preciosStar
         val mdlGenerator = new MDLGenerator()
-        val ctx = ContextSpc(TestRelationalSpc.relationalSpec, TestConnectionSpc.connectionSpc)
+        val ctx = ContextSpc(TestDatasetSpc.datasets, TestConnectionSpc.connectionSpc)
         val mdl = mdlGenerator.getO3Model(ctx, star)
+        val a = mdl
       }
     }
   }

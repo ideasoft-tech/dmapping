@@ -1,0 +1,48 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+#foreach ($measure in $o3Model.measures)
+#if($measure.measureDerivation)
+	OBJECT ideasoft.olap.syntax.MeasureDateSumDefSTB
+		ATTR
+		STBVersion=1.1
+		id='${measure.name}'
+		name='${measure.name}'
+		visible='true'
+		scale='0'
+		type='DATE_SUM'
+		derivated='true'
+		measureA='${measure.measureDerivation.measure}'
+		measureB=''
+		description='$!{measure.description}'
+		dateDimension='Date'
+		acumDateLevel='-1'
+		END
+
+		OBJECT com.ideasoft.syntax.IntrospectorSTB ideasoft.util.format.FormatDefUI
+ 			ATTR
+ 			STBVersion=1.0
+ 			decimalSeparator=','
+ 			displayDate='1'
+ 			fixed='true'
+ 			groupingSeparator='.'
+ 			maxDecimals='2'
+ 			minDecimals='0'
+ 			naNSymbol='NaN'
+ 			negativeAlignment='4'
+ 			negativeStyle='0'
+ 			representation='0'
+ 			showGroupingSeparator='true'
+ 			valueFormatAs='AS_NUMBER'
+ 			END
+ 
+ 			OBJECT com.ideasoft.syntax.IntrospectorSTB ideasoft.util.awt.StringStyle, stringStyle
+ 				ATTR
+ 				STBVersion=1.0
+ 				border='0'
+ 				horizontalAlignment='4'
+ 				verticalAlignment='0'
+ 				END
+			END
+ 		END
+	END
+#end
+#end

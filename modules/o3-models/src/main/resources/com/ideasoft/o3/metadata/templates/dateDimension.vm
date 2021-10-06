@@ -1,0 +1,36 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+	OBJECT ideasoft.olap.syntax.DateDimensionDefSTB
+		ATTR
+		STBVersion=1.0
+		id='${dimension.name}'
+		name='${dimension.name}'
+		blankString='Blank'
+		visible='true'
+##		measuresMode='DEFAULT_MODE'
+		measuresMode='${dimension.measuresMode}'
+		dateField='${dimension.dateField}'
+		initialMonth='1'
+		yearLabelMode='LAST_MONTH_IN_PERIOD'
+		weekMode='MON_SUN'
+#		storageType='1'
+#		relatedDimension='-1'
+		END
+
+#foreach ($level in $dimension.levels)
+#set ($granularity = $level.granularity)
+#GRANULARITY $granularity
+		OBJECT ideasoft.olap.syntax.DimensionLevelDateSTB
+			ATTR
+			STBVersion=1.0
+			name='${level.name}'
+			label='${level.name}'
+			key='DATE'
+			labelField='DATE'
+			description=''
+			sortType='NO_SORT'
+			sortDirection='0'
+			type='$granularity'
+			END
+		END
+#end
+	END

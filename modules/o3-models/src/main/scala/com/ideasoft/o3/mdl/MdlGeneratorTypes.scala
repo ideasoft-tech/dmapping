@@ -2,12 +2,11 @@ package com.ideasoft.o3.mdl
 
 import com.ideasoft.edf.core.env.SessionContext
 import com.ideasoft.edf.data.api.SchemaConnectionDescriptor
-import com.ideasoft.edf.data.metadata.impl.Table
-import com.ideasoft.edf.data.spec.{DataField, Metadata}
+import com.ideasoft.edf.data.spec.Metadata
+import com.ideasoft.o3.mdl.DatasetTypes._
 import com.ideasoft.o3.metadata.api._
 import uy.ideasoft.o3tng.metadata.bi._
 import uy.ideasoft.o3tng.metadata.ctx.{ConnectionSpc, ContextSpc}
-import uy.ideasoft.o3tng.metadata.rdb.RelationalSpc
 
 import java.util
 import scala.jdk.CollectionConverters._
@@ -16,16 +15,11 @@ import scala.language.implicitConversions
 object MdlGeneratorTypes {
 
   implicit def mdlCtx2SessionCtx(ctx: ContextSpc): SessionContext = new SessionContext {
-    override def getMetadata: Metadata = ctx.relationalSpc
+    override def getMetadata: Metadata = ctx.datasetsSchemas
 
     override def getConnectionDescriptor: SchemaConnectionDescriptor = ctx.schConnection
   }
 
-  implicit def relationalSpc2Metadata(relationalSpc: RelationalSpc): Metadata = new Metadata {
-    override def getTable(sch: String, name: String): Table = null
-
-    override def getFieldbyFieldName(var1: String): DataField = null
-  }
 
   implicit def connectionSpc2Connection(connSpc: ConnectionSpc): SchemaConnectionDescriptor = new SchemaConnectionDescriptor {
     override def getEngine: String = connSpc.engine.getOrElse("")

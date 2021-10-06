@@ -1,0 +1,174 @@
+## $Id: sources.vm,v 1.12 2006/05/18 18:35:31 ignacio Exp $
+#SOURCES STARTS
+#set ($index = 0)
+#foreach($source in $o3Model.sources)
+#foreach($query in $source.queries)
+	OBJECT ideasoft.olap.syntax.SQLFormatSTB
+		ATTR
+		STBVersion=1.0
+		name='${query.name}'
+		qualify='${query.qualify}'
+		verify='true'
+		ignored='false'
+		tuplesByRecord='1'
+		dbName='${index}'
+		query='${query.code}'
+		END
+
+		OBJECT ideasoft.olap.syntax.ExternalFormatSourceSTB
+			ATTR
+			STBVersion=1.0
+			inputSetName='Full'
+			END
+		END
+#set ($addressCount = 0)
+#foreach($field in $query.fields)
+		OBJECT ideasoft.olap.syntax.SQLFieldFormatSTB
+			ATTR
+			STBVersion=1.0
+			name='${field.name}'
+			type='${field.type}'
+			address='${addressCount}'
+#set ($addressCount = $addressCount + 1)
+			tableKey='false'
+			tableField='false'
+			END
+		END
+#end
+	END
+#end
+#set ($index = $index + 1)
+#end
+	OBJECT ideasoft.olap.syntax.DBListSTB
+		ATTR
+		STBVersion=1.0
+		END
+#foreach($source in $o3Model.sources)
+
+		OBJECT ideasoft.olap.syntax.DBDefSTB
+			ATTR
+			STBVersion=1.0
+			name='${source.name}'
+#set($pesos = '$')
+#set($constant = ${source.name})
+#set($constant = $constant.toUpperCase())
+#set($constant = $constant.replaceAll("[^a-z,A-Z,0-9]", "_"))
+			subProtocol='${pesos}CONN_PROTOCOL_${constant}${pesos}'
+			dataSource='${pesos}CONN_PARAMETERS_${constant}${pesos}'
+			user='${pesos}CONN_LOGIN_${constant}${pesos}'
+			password='$cipher.encBase64("${pesos}CONN_PASS_${constant}.pwd${pesos}")'
+			url='jdbc:${pesos}CONN_PROTOCOL${pesos}:${pesos}CONN_PARAMETERS_${constant}${pesos}'
+			driver='${pesos}CONN_DRIVER_${constant}${pesos}'
+			verify='${source.verified}'
+			END
+		END
+#end
+	END
+
+	OBJECT ideasoft.olap.syntax.ModelConfigSTB
+		ATTR
+		STBVersion=1.0
+		END
+
+		OBJECT ideasoft.olap.syntax.RedundancyGroupSTB
+			ATTR
+			STBVersion=1.0
+			END
+		END
+
+		OBJECT ideasoft.olap.syntax.ISTableGroupSTB
+			ATTR
+			STBVersion=1.0
+			name.0='Full'
+			type.0='Full'
+			downward.0='false'
+			END
+
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.1
+				name='Full'
+				type='Full'
+				downward='true'
+				groupClass='ideasoft.olap.mdm.ISGroup'
+				__unicode='0'
+				__base64='0'
+				END
+			END
+		END
+
+		OBJECT ideasoft.olap.syntax.ParamSetDefSTB
+			ATTR
+			STBVersion=1.0
+			controlLer.0='false'
+			END
+
+#foreach($source in $o3Model.sources)
+#set($constant = ${source.name})
+#set($constant = $constant.toUpperCase())
+#set($constant = $constant.replaceAll("[^a-z,A-Z,0-9]", "_"))
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.0
+				name='CONN_LOGIN_${constant}'
+				value='$!{source.user}'
+				type='String'
+				controller='false'
+				groupClass='ideasoft.olap.config.ParamDef'
+				__unicode='false'
+				END
+			END
+
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.0
+				name='CONN_PASS_${constant}.pwd'
+				value='$cipher.encBase64("$!{source.password}")'
+				type='String'
+				controller='false'
+				groupClass='ideasoft.olap.config.ParamDef'
+				__unicode='false'
+				END
+			END
+
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.0
+				name='CONN_DRIVER_${constant}'
+				value='${source.driver}'
+				type='String'
+				controller='false'
+				groupClass='ideasoft.olap.config.ParamDef'
+				__unicode='false'
+				END
+			END
+
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.0
+				name='CONN_PROTOCOL_${constant}'
+				value='${source.protocol}'
+				type='String'
+				controller='false'
+				groupClass='ideasoft.olap.config.ParamDef'
+				__unicode='false'
+				END
+			END
+
+			OBJECT ideasoft.olap.syntax.GroupSTB
+				ATTR
+				STBVersion=1.0
+				name='CONN_PARAMETERS_${constant}'
+				value='${source.parameters}'
+				type='String'
+				controller='false'
+				groupClass='ideasoft.olap.config.ParamDef'
+				__unicode='false'
+				END
+			END
+
+#end
+		END
+	END
+
+#SOURCES ENDS

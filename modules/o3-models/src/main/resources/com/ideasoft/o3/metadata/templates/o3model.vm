@@ -1,0 +1,245 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+OBJECT ideasoft.olap.syntax.CubeDefSTB
+	ATTR
+	STBVersion=1.0
+	_UEncodedVersion=''
+	_Base64EncodedVersion=''
+	name='${o3Model.name}'
+	blankString='Blank'
+	measuresMode='IGNORE_MODE'
+	lastGeneratedId='0'
+	END
+
+	OBJECT ideasoft.olap.syntax.GroupSTB
+		ATTR
+		STBVersion=1.0
+		type='Model'
+		cubeName='${o3Model.name}'
+		currentInputSet='Full'
+		groupClass='ideasoft.olap.mdm.ModelInfo'
+##		offset='0'
+##		title=''
+##		description='$!{component.description}'
+##		author=''
+##		theme=''
+##		category=''
+##		keys=''
+##		organization=''
+##		sName.DName=''
+##		sName.URL='file:/nullnull'
+##		predSName.DName=''
+##		predSName.URL=''
+##		modifiedBy=''
+##		creationDate='08/09/2005'
+##		revisionDate='08/09/2005'
+##		modifiedDate='08/09/2005'
+##		modifiedTimeStr='1126204403968'
+##		domain='o=IdeaSoft, c=UY'
+##		password=''
+		END
+	END
+
+#parse("com/ideasoft/o3/metadata/templates/dimensions.vm")
+#parse("com/ideasoft/o3/metadata/templates/measures.vm")
+#parse("com/ideasoft/o3/metadata/templates/sources.vm")
+
+##	OBJECT ideasoft.olap.syntax.ModelConfigSTB
+##		ATTR
+##		STBVersion=1.0
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.RedundancyGroupSTB
+##			ATTR
+##			STBVersion=1.0
+##			END
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.GroupSTB
+##			ATTR
+##			STBVersion=1.0
+##			blockSize='4096'
+##			minCache='0'
+##			maxCache='2000'
+##			redundancyEnabled='true'
+##			autoRedundancy='false'
+##			redundancyStart='0'
+##			redundancyEnd='0'
+##			redundancyMethod='Topmost'
+##			useEstimatedSpace='false'
+##			estimatedSpace='0'
+##			maxScan='10000'
+##			loadingTimePhases='0'
+##			buildingTimePhases='999'
+##			loadingTimePhasesInc='0'
+##			buildingTimePhasesInc='999'
+##			deployTimePhases='0'
+##			compression='NONE'
+##			splitSize='-1'
+##			groupClass='ideasoft.olap.config.BuildParams'
+##			END
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.ISTableGroupSTB
+##			ATTR
+##			STBVersion=1.0
+##			name.0='Full'
+##			type.0='Full'
+##			downward.0='false'
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.1
+##				name='Full'
+##				type='Full'
+##				downward='true'
+##				groupClass='ideasoft.olap.mdm.ISGroup'
+##				__unicode='0'
+##				__base64='0'
+##				END
+##			END
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.ParamSetDefSTB
+##			ATTR
+##			STBVersion=1.0
+##			controlLer.0='false'
+##			END
+##		END
+##	END
+##
+##	OBJECT ideasoft.olap.syntax.BuildActionsConfigSTB
+##		ATTR
+##		STBVersion=1.0
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.BuildActionsTableSTB
+##			ATTR
+##			STBVersion=1.0
+##			result.0=''
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='FULL OK'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='INCREMENTAL OK'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='INVALID GUARD'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='UNAVAILABLE SOURCE'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='INTERRUPTED'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='ERROR'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='NO VALID CONTROLLER'
+##				groupClass='ideasoft.olap.config.BuildActionDef'
+##				END
+##			END
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.RetryActionsTableSTB
+##			ATTR
+##			STBVersion=1.0
+##			result.0=''
+##			interval.0='0'
+##			retries.0='0'
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='INVALID GUARD'
+##				interval='0'
+##				retries='0'
+##				groupClass='ideasoft.olap.config.RetryActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='UNAVAILABLE SOURCE'
+##				interval='0'
+##				retries='0'
+##				groupClass='ideasoft.olap.config.RetryActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='INTERRUPTED'
+##				interval='0'
+##				retries='0'
+##				groupClass='ideasoft.olap.config.RetryActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='ERROR'
+##				interval='0'
+##				retries='0'
+##				groupClass='ideasoft.olap.config.RetryActionDef'
+##				END
+##			END
+##
+##			OBJECT ideasoft.olap.syntax.GroupSTB
+##				ATTR
+##				STBVersion=1.0
+##				result='NO VALID CONTROLLER'
+##				interval='0'
+##				retries='0'
+##				groupClass='ideasoft.olap.config.RetryActionDef'
+##				END
+##			END
+##		END
+##
+##		OBJECT ideasoft.olap.syntax.GroupSTB
+##			ATTR
+##			STBVersion=1.0
+##			groupClass='ideasoft.olap.config.MailerSetup'
+##			END
+##		END
+##	END
+END

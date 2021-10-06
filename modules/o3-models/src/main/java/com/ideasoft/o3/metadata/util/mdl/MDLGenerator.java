@@ -109,13 +109,13 @@ public class MDLGenerator {
 
 		StringWriter sw = new StringWriter();
 
-		// Evaluate the temaplate
+		// Evaluate the template
 		try {
 			ve.evaluate(velocityContext, sw, "O3 Model", reader);
 			sw.close();
 		} catch (Exception ex) {
 			log.debug(ex);
-			throw new MDLGenerationException("The template aplication was failed.", ex);
+			throw new MDLGenerationException("The template application was failed.", ex);
 		}
 
 		return sw.getBuffer().toString();
@@ -152,7 +152,7 @@ public class MDLGenerator {
 	// Common properties
 	public static final String TABLE_WHERE_CLAUSULE = ApiFactory.TABLE_WHERE_CLAUSULE;
 
-	private static final String TEMPLATE_ROOT = "/src-old/ideasoft/o3/metadata/templates/";
+	private static final String TEMPLATE_ROOT = "/com/ideasoft/o3/metadata/templates/";
 	private static final String O3_MDL_MODEL_TEMPLATE = TEMPLATE_ROOT + "o3model.vm";
 
 	private static ILog log = ILogFactory.getILog(MDLGenerator.class);

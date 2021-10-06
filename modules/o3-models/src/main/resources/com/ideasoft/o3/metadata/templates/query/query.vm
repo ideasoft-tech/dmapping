@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+<XIterator schema="${queryModel.schemaName}" xmlns:fp="http://www.isoft.com.uy/FormProperties" xmlns:xct="http://www.isoft.com.uy/xCommonTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.isoft.com.uy/schemas/edf2/Iterator.xsd">
+	<iteratorSpec generateFormSpec="true" name="${queryModel.name}" remote="false">
+		<sqltemplate>
+			<source>
+				<table tableName="${queryModel.source.tableName}" schemaName="${queryModel.source.schemaName}"/>
+			</source>
+			<fieldTemplates name="fields">
+#foreach($fieldTemplate in $queryModel.fieldTemplates)
+				<fieldName alias="${fieldTemplate.alias}" fieldName="${fieldTemplate.fieldName}" type="${fieldTemplate.type}"/>
+#end
+			</fieldTemplates>
+#foreach($filter in $queryModel.filters)
+			<filter name="${filter.name}">
+				<conditionString>${filter.conditionString}</conditionString>
+				<argument name="${filter.name}">
+					<restriction baseType="${filter.type}"/>
+					<fieldProperties>
+						<label>${filter.label}</label>
+						<valueProperties>
+							<ons>
+								<get attribute="${filter.attribute}" dimension="${filter.dimension}" level="${filter.level}" path="${filter.path}"/>
+							</ons>
+#if($filter.helpQuery)
+							<options>
+								<choice>
+									<SQLQuery schema="${filter.helpSchemaName}">${filter.helpQuery}</SQLQuery>
+								</choice>
+							</options>
+#end
+						</valueProperties>
+					</fieldProperties>
+				</argument>
+			</filter>
+#end
+		</sqltemplate>
+	</iteratorSpec>
+</XIterator>

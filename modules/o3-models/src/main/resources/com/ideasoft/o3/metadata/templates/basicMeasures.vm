@@ -1,0 +1,115 @@
+## $Id: basicMeasures.vm,v 1.4 2006/01/16 15:07:16 npalombo Exp $
+#foreach ($measure in $o3Model.measures)
+#if($measure.field)
+#MEASURE $measure.name
+	OBJECT ideasoft.olap.syntax.MeasureDefSTB
+		ATTR
+		STBVersion=1.1
+		id='${measure.name}'
+		name='${measure.name}'
+		visible='true'
+##		order='${velocityCount}'
+		fieldName='${measure.field}'
+		storageType.0='2'
+		scale='0'
+		type='${measure.aggregationFunction}'
+		derivated='false'
+		measureA=''
+		measureB=''
+		description='$!{measure.description}'
+		END
+#foreach ($dimensionScope in $measure.dimensionScopes)
+#MEASURE ${measure.name}, Scope for Dimension: $dimensionScope.dimensionName
+		OBJECT ideasoft.olap.syntax.DimensionScopeDefSTB
+			ATTR
+			STBVersion=1.1
+			dimension='$dimensionScope.dimensionIndex'
+			type='$dimensionScope.type'
+			levelScopes.0='INPUT_SCOPE'
+#set($levelCount = 1)
+#foreach ($levelScope in $dimensionScope.levelScopes)
+			levelScopes.${levelCount}='$levelScope'
+#set($levelCount = $levelCount + 1)
+#end
+			END
+		END
+#end
+
+		OBJECT com.ideasoft.syntax.IntrospectorSTB ideasoft.util.format.FormatDefUI
+			ATTR
+			STBVersion=1.0
+			decimalSeparator=','
+			displayDate='1'
+			fixed='true'
+			groupingSeparator='.'
+			maxDecimals='2'
+			minDecimals='0'
+			naNSymbol='NaN'
+			negativeAlignment='4'
+			negativeStyle='0'
+			representation='0'
+			showGroupingSeparator='true'
+			valueFormatAs='AS_NUMBER'
+			END
+
+			OBJECT com.ideasoft.syntax.IntrospectorSTB ideasoft.util.awt.StringStyle, stringStyle
+				ATTR
+				STBVersion=1.0
+				border='0'
+				horizontalAlignment='4'
+				verticalAlignment='0'
+				END
+
+## MM 				OBJECT ideasoft.util.syntax.InsetsSTB insets
+## MM 					ATTR
+## MM 					STBVersion=1.0
+## MM 					top='0'
+## MM 					left='3'
+## MM 					bottom='0'
+## MM 					right='3'
+## MM 					END
+## MM 				END
+## MM 
+## MM 				OBJECT com.ideasoft.syntax.IntrospectorSTB ideasoft.util.awt.FontDescriptor, fontDescriptor
+## MM 					ATTR
+## MM 					STBVersion=1.0
+## MM 					maximumCharWidth='0'
+## MM 					name='SansSerif'
+## MM 					size='11'
+## MM 					style='0'
+## MM 					END
+## MM 				END
+## MM 
+## MM 				OBJECT ideasoft.util.syntax.ColorSTB background
+## MM 					ATTR
+## MM 					STBVersion=1.0
+## MM 					value='-1'
+## MM 					END
+## MM 				END
+## MM 
+## MM 				OBJECT ideasoft.util.syntax.ColorSTB foreground
+## MM 					ATTR
+## MM 					STBVersion=1.0
+## MM 					value='-16777216'
+## MM 					END
+ 				END
+## MM 
+## MM 				OBJECT ideasoft.util.syntax.ColorSTB borderColor
+## MM 					ATTR
+## MM 					STBVersion=1.0
+## MM 					value='-16777216'
+## MM 					END
+## MM 				END
+## MM 			END
+## MM 
+## MM 			OBJECT ideasoft.util.syntax.ColorSTB negativeColor
+## MM 				ATTR
+## MM 				STBVersion=1.0
+## MM 				value='-16777216'
+## MM 				END
+## MM 			END
+ 		END
+	END
+#end
+#end
+#FIN MEASURES!!!

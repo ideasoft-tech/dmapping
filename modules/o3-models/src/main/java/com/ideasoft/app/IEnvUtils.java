@@ -147,7 +147,7 @@ public class IEnvUtils {
 
 		//ideasoft.home is replaced to file:/path, but I don't want to loose the original path
 		//in order to allow replacements (URI=xml:${ideasoft.home.path}/xmls/a.xml)
-		iEnv.getProperties().put("ideasoft.home.path", homePath);
+//		iEnv.getProperties().put("ideasoft.home.path", homePath);
 	}
 
 	//- User, UserHome and UserPath properties

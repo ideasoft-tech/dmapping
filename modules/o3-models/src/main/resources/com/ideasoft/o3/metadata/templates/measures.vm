@@ -1,0 +1,3 @@
+## $Id: components.vm,v 1.9 2005/10/13 14:14:19 ignacio Exp $
+#parse("com/ideasoft/o3/metadata/templates/basicMeasures.vm")
+#parse("com/ideasoft/o3/metadata/templates/derivatedMeasures.vm")

@@ -42,7 +42,7 @@ object TestStarSpc {
           )
         ),
         StarDimensionSpc(
-          name = "products",
+          name = "Productos",
           dimSpc = AttrDimensionSpc(
             table = "products",
             schema = "ancel2",

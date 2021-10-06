@@ -1,10 +1,10 @@
 package uy.ideasoft.o3tng.metadata.ctx
 
-import uy.ideasoft.o3tng.metadata.rdb.RelationalSpc
+import uy.ideasoft.o3tng.dataset.schema.RecordSchema.DatasetsSchemas
 
 
 case class ContextSpc(
-  relationalSpc: RelationalSpc,
+  datasetsSchemas: DatasetsSchemas,
   schConnection: ConnectionSpc) {
 }
 

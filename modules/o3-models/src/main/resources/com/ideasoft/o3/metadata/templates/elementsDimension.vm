@@ -1,0 +1,45 @@
+## $Id: elementsDimension.vm,v 1.11 2006/01/12 13:33:38 npalombo Exp $
+
+#DIMENSION $dimension.name STARTS
+	OBJECT ideasoft.olap.syntax.DimensionDefSTB
+		ATTR
+		STBVersion=1.0
+		id='${dimension.name}'
+		name='${dimension.name}'
+		description='$!{dimension.description}'
+		blankString='Blank'
+#		uniqueLevel='-1'
+#set ($uniqueLevel = -1)
+#foreach ($level in $dimension.levels)
+#if ($level.uniqueLevel)
+#set ($uniqueLevel = $uniqueLevel + $velocityCount)
+#end
+#end
+		uniqueLevel='$uniqueLevel'
+		visible='true'
+##		measuresMode='DEFAULT_MODE'
+		measuresMode='${dimension.measuresMode}'
+		END
+#foreach ($level in $dimension.levels)
+		OBJECT ideasoft.olap.syntax.DimensionLevelDefSTB
+			ATTR
+			STBVersion=1.0
+			name='${level.name}'
+			label='${level.name}'
+			key='${level.keyField}'
+##			key='${level.name}'
+#if ($level.labelField)
+			labelField='${level.labelField}'
+#end
+#if ($level.descriptionField)
+			longDescField='${level.descriptionField}'
+#end
+			description='$!{level.description}'
+			sortType='NO_SORT'
+			sortDirection='1'
+			sortingField='Default Value / Valor por omision'
+			END
+		END
+#end
+	END
+#DIMENSION $dimension.name ENDS
